@@ -1,129 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Board</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        header {
-            background-color: #4CAF50;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        header .change-name {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #fff;
-            color: #4CAF50;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        section {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 600px;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background-color: #f9f9f9;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Dino Game</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Message Board</h1>
-        <button class="change-name" id="changeNameBtn" style="display:none;">Change Name</button>
-    </header>
-    <section>
-        <form id="nameForm" style="display:block;">
-            <input type="text" id="nameInput" placeholder="Enter your name" required>
-            <input type="submit" value="Submit">
-        </form>
-        <form id="messageForm" style="display:none;">
-            <input type="text" id="messageInput" placeholder="Enter your message" required>
-            <input type="submit" value="Submit">
-        </form>
-        <ul id="messageList">
-            <!-- Messages will appear here -->
-        </ul>
-    </section>
-    <script>
-        let userName = '';
+  <input type="file" id="imageUpload" accept="image/*">
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
 
-        document.getElementById('nameForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const nameInput = document.getElementById('nameInput');
-            userName = nameInput.value;
-            if (userName.trim()) {
-                document.getElementById('nameForm').style.display = 'none';
-                document.getElementById('messageForm').style.display = 'block';
-                document.getElementById('changeNameBtn').style.display = 'block';
-            }
-        });
-
-        document.getElementById('messageForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value;
-            if (message.trim()) {
-                const messageList = document.getElementById('messageList');
-                const newMessage = document.createElement('li');
-                newMessage.textContent = `${userName}: ${message}`;
-                messageList.appendChild(newMessage);
-                messageInput.value = '';
-            }
-        });
-
-        document.getElementById('changeNameBtn').addEventListener('click', function() {
-            document.getElementById('nameForm').style.display = 'block';
-            document.getElementById('messageForm').style.display = 'none';
-            document.getElementById('changeNameBtn').style.display = 'none';
-        });
-    </script>
+  <script src="game.js"></script>
 </body>
 </html>
